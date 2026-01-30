@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta XV Años - Sibela Adelain | RH Studio</title>
+    
+    <!-- Tipografías: Playfair Display (Elegancia) y Lato (Lectura técnica/moderna) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Regla 60-30-10 */
+            --bg-primary: #050505;      /* 60% - Negro puro */
+            --bg-secondary: #121212;    /* 60% - Negro elevado */
+            --text-main: #e0e0e0;       /* Texto lectura */
+            --text-muted: #a0a0a0;      /* Texto secundario */
+            
+            --gold-main: #d4af37;       /* 30% - Dorado */
+            --gold-dim: rgba(212, 175, 55, 0.1); 
+            
+            --red-accent: #9e2a2b;      /* 10% - Rojo Carmesí */
+            --red-glow: rgba(158, 42, 43, 0.2); 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-main);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        /* Utilidades */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 90vh;
+            /* Se usa un overlay oscuro para asegurar legibilidad */
+            background: linear-gradient(to bottom, rgba(5,5,5,0.4), var(--bg-primary)), url('assets/hero-bg.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero-sub {
+            color: var(--gold-main) !important;
+            font-weight: 700 !important;
+            letter-spacing: 1px !important;
+        }
+
+        /* INTRODUCCIÓN */
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .intro-text h2 {
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .intro-text h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--red-accent);
+            margin: 15px auto 0;
+        }
+
+        .quote {
+            margin-top: 30px;
+            font-style: italic;
+            color: var(--gold-main);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+
+        /* GRID DE SERVICIOS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid #222;
+            border-radius: 2px;
+            overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-main);
+        }
+
+        .card-img {
+            height: 240px;
+            width: 100%;
+            object-fit: cover;
+            /* FIX CRÍTICO: Alinea la imagen al borde superior para no cortar cabezas en fotos verticales */
+            object-position: top center; 
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .card-body {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .price {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--red-accent);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            border-bottom: 1px solid var(--red-accent);
+            padding-bottom: 5px;
+        }
+
+        .card-desc {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: auto;
+        }
+
+        .card ul li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .card ul li::before {
+            content: "✦"; 
+            color: var(--gold-main);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            top: 2px;
+        }
+
+        /* TOTAL SECTION */
+        .total-section {
+            background-color: var(--bg-secondary);
+            text-align: center;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .total-section::before, .total-section::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 40px;
+            background: var(--gold-main);
+        }
+        .total-section::before { top: 0; }
+        .total-section::after { bottom: 0; }
+
+        .total-price {
+            font-size: 4.5rem;
+            color: var(--red-accent);
+            font-family: 'Playfair Display', serif;
+            margin: 10px 0;
+            text-shadow: 0 0 30px var(--red-glow);
+        }
+
+        /* FLEXIBILIDAD */
+        .flexibility {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .flex-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .flex-img-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .flex-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            /* FIX: Asegura que si la foto es vertical no se corte el sujeto principal */
+            object-position: top center;
+            border-radius: 2px;
+            filter: grayscale(30%);
+        }
+        
+        .flex-img-container::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--gold-main);
+            z-index: -1;
+        }
+
+        .highlight-box {
+            border-left: 3px solid var(--red-accent);
+            padding-left: 20px;
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #000;
+            border-top: 1px solid #222;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--gold-main);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .total-price { font-size: 3.5rem; }
+            .flexibility { flex-direction: column-reverse; }
+            .flex-img-container::after { top: 10px; left: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content container">
+            <p>RH STUDIO PRESENTA</p>
+            <h1>Un recuerdo para toda la familia</h1>
+            <p class="hero-sub">XV Años Adelein Sibela</p>
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="section">
+        <div class="container intro-text">
+            <h2>Manuel y Sara</h2>
+            <p>Los XV años de Sibela Adelain son un momento muy especial para todos. Este paquete está pensado para acompañarlos con calma, cuidado y mucha atención en lo que realmente importa: la familia, los momentos y la emoción del día.</p>
+            <p class="quote">"La idea es que disfruten el evento con tranquilidad, sabiendo que los recuerdos estarán bien cuidados."</p>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 10px;">Video y Fotografía Esencial</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">Un paquete equilibrado para guardar este día tan importante tal como se vive: con emoción, cercanía y detalles que valen la pena.</p>
+            
+            <div class="services-grid">
+                
+                <!-- VIDEO -->
+                <article class="card">
+                    <!-- Placeholder fallback para preview -->
+                    <img src="assets/video-cover.webp" 
+                         onerror="this.src='https://placehold.co/600x400/121212/d4af37?text=Visual:+Entrada+Sibela'; this.onerror=null;" 
+                         alt="Entrada de Sibela" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">🎥 Cobertura en Video</h3>
+                        <span class="price">$6,500</span>
+                        <p class="card-desc">El video permite revivir el evento una y otra vez, tal como sucedió.</p>
+                        <ul>
+                            <li>Los momentos más importantes del día</li>
+                            <li>Reacciones, gestos y emociones</li>
+                            <li>Una edición cuidada y natural</li>
+                            <li>Ideal para compartir con la familia</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- FOTOGRAFÍA -->
+                <article class="card">
+                    <img src="assets/foto-cover.webp" 
+                         onerror="this.src='https://placehold.co/600x400/121212/d4af37?text=Visual:+Familia+y+Vals'; this.onerror=null;" 
+                         alt="Retrato familiar" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">📸 Fotografía Parcial</h3>
+                        <span class="price">$7,500</span>
+                        <p class="card-desc">La fotografía se enfoca en los momentos que más se recuerdan.</p>
+                        <ul>
+                            <li>Fotos con la familia</li>
+                            <li>El vals</li>
+                            <li>Momentos importantes del evento</li>
+                            <li>Imágenes pensadas para volver a verlas con cariño</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- SESIÓN PREVIA -->
+                <article class="card">
+                    <img src="assets/sesion-cover.webp" 
+                         onerror="this.src='https://placehold.co/600x400/121212/d4af37?text=Visual:+Sesión+Casual'; this.onerror=null;" 
+                         alt="Retrato natural" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">📷 Sesión Previa (1h)</h3>
+                        <span class="price">INCLUIDA</span>
+                        <p class="card-desc">Una sesión tranquila antes del evento para que Sibela se sienta cómoda.</p>
+                        <ul>
+                            <li>Crear fotos bonitas con calma</li>
+                            <li>Tener imágenes para usar el día del evento</li>
+                            <li>Ayuda a que todo fluya mejor el día de los XV</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- BASTIDOR -->
+                <article class="card">
+                    <img src="assets/bastidor-cover.webp" 
+                         onerror="this.src='https://placehold.co/600x400/121212/d4af37?text=Visual:+Bastidor+20x24'; this.onerror=null;" 
+                         alt="Bastidor en casa" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">🖼️ Bastidor 20x24”</h3>
+                        <span class="price">INCLUIDO</span>
+                        <p class="card-desc">Una fotografía impresa en grande, perfecta para colocarla en la recepción.</p>
+                        <ul>
+                            <li>Conservarla como recuerdo en casa</li>
+                            <li>Un detalle especial que queda para siempre</li>
+                            <li>Impresión de alta calidad</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TOTAL -->
+    <section class="section total-section">
+        <div class="container">
+            <h3>Total del Paquete</h3>
+            <div class="total-price">$14,000</div>
+            <p>Todo lo necesario para recordar este día con cariño.</p>
+        </div>
+    </section>
+
+    <!-- FLEXIBILIDAD -->
+    <section class="section">
+        <div class="container flexibility">
+            <div class="flex-text">
+                <h2>Un paquete que se adapta a ustedes</h2>
+                <p>Cada familia es distinta, y cada evento también. Si quieren ajustar tiempos, enfoques o prioridades, lo vemos sin problema.</p>
+                <div class="highlight-box">
+                    "La idea es que el paquete se adapte a ustedes, no al revés."
+                </div>
+            </div>
+            <div class="flex-img-container">
+                <img src="assets/flex-cover.webp" 
+                     onerror="this.src='https://placehold.co/500x700/121212/d4af37?text=Visual:+Preparación'; this.onerror=null;" 
+                     alt="Detalles de preparación" class="flex-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- CIERRE -->
+    <footer>
+        <div class="container">
+            <span class="footer-logo">RH STUDIO</span>
+            <p>Gracias por la confianza para formar parte de un día tan importante.<br>Cualquier duda o ajuste, lo platicamos con calma.</p>
+            <div class="signature">
+                — Alexis Rodríguez
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
